@@ -1,5 +1,4 @@
 use tauri::Manager;
-use url::Url;
 
 #[tauri::command]
 async fn open_webpage(app: tauri::AppHandle, url: String) -> Result<(), String> {
@@ -10,7 +9,7 @@ async fn open_webpage(app: tauri::AppHandle, url: String) -> Result<(), String> 
         return Ok(());
     }
 
-    let parsed_url = Url::parse(&url).map_err(|e| e.to_string())?;
+    let parsed_url = tauri::Url::parse(&url).map_err(|e| e.to_string())?;
 
     tauri::WebviewWindowBuilder::new(&app, &label, tauri::WebviewUrl::External(parsed_url))
         .title(url.clone())
