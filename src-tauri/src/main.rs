@@ -15,7 +15,7 @@ async fn open_webpage(app: tauri::AppHandle, url: String) -> Result<(), String> 
         .title(url.clone())
         .decorations(true)
         .resizable(true)
-        .inner_size(1280.0, 800.0)
+        .inner_size(3840.0, 2160.0)
         .position(0.0, 0.0)
         .build()
         .map_err(|e| e.to_string())?;
