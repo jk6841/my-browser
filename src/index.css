@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+
+    --primary: oklch(0.65 0.15 260);
+    --primary-foreground: oklch(1 0 0);
+
+    --secondary: oklch(0.96 0.02 240);
+    --secondary-foreground: oklch(0.145 0 0);
+
+    --muted: oklch(0.96 0.02 240);
+    --muted-foreground: oklch(0.55 0.02 240);
+
+    --accent: oklch(0.96 0.02 240);
+    --accent-foreground: oklch(0.145 0 0);
+
+    --destructive: oklch(0.65 0.15 25);
+    --destructive-foreground: oklch(1 0 0);
+
+    --border: oklch(0.92 0.01 240);
+    --input: oklch(0.92 0.01 240);
+    --ring: oklch(0.65 0.15 260);
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.98 0.02 240);
+
+    --card: oklch(0.145 0 0);
+    --card-foreground: oklch(0.98 0.02 240);
+
+    --popover: oklch(0.145 0 0);
+    --popover-foreground: oklch(0.98 0.02 240);
+
+    --primary: oklch(0.7 0.15 260);
+    --primary-foreground: oklch(0.145 0 0);
+
+    --secondary: oklch(0.2 0.02 240);
+    --secondary-foreground: oklch(0.98 0.02 240);
+
+    --muted: oklch(0.2 0.02 240);
+    --muted-foreground: oklch(0.6 0.02 240);
+
+    --accent: oklch(0.2 0.02 240);
+    --accent-foreground: oklch(0.98 0.02 240);
+
+    --destructive: oklch(0.65 0.15 25);
+    --destructive-foreground: oklch(0.98 0.02 240);
+
+    --border: oklch(0.25 0.02 240);
+    --input: oklch(0.25 0.02 240);
+    --ring: oklch(0.7 0.15 260);
+  }
+
+  *,
+  *::before,
+  *::after {
+    border-color: var(--border);
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    min-height: 100vh;
+    margin: 0;
+    font-feature-settings: "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .overlay {
+    @apply min-h-screen flex flex-col;
+  }
+
+  .toolbar {
+    @apply h-14 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/80 dark:border-gray-800/80 flex items-center px-4 gap-3 shadow-sm z-10;
+  }
+
+  .nav-btn {
+    @apply w-9 h-9 flex items-center justify-center rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-150 text-lg font-medium;
+  }
+
+  .url-form {
+    @apply flex-1 max-w-3xl mx-auto;
+  }
+
+  .url-input {
+    @apply w-full px-5 py-3 bg-white dark:bg-gray-800/95 /* 라이트: 흰색, 다크: 살짝 투명한 어두운 회색 */ border border-gray-300 dark:border-gray-600 /* 테두리 색상 조정 (다크 모드에서 덜 강하게) */ rounded-full text-base text-gray-900 dark:text-gray-100 /* 글씨 색상: 라이트=검정, 다크=흰색 */ placeholder:text-gray-500 dark:placeholder:text-gray-400 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+  }
+
+  .home-btn {
+    @apply px-5 py-2.5 text-sm font-medium bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-lg transition-colors duration-150 shadow-sm;
+  }
+}
