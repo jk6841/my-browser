@@ -6,6 +6,15 @@ const host = process.env.TAURI_DEV_HOST;
 
 export default defineConfig(async () => ({
   plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: [
+      { find: '@', replacement: '/src' },
+      {
+        find: '@lib',
+        replacement: '/src/lib',
+      },
+    ],
+  },
   clearScreen: false,
 
   server: {
