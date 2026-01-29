@@ -1,6 +1,6 @@
 import Launcher from '@page/Home.tsx';
-import Login from '@page/Login';
-import Logout from '@page/Logout';
+import Login from '@page/Login.tsx';
+import Logout from '@page/Logout.tsx';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Route, Routes } from 'react-router';
