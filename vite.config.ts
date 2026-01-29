@@ -13,6 +13,10 @@ export default defineConfig(async () => ({
         find: '@lib',
         replacement: '/src/lib',
       },
+      {
+        find: '@page',
+        replacement: '/src/page',
+      },
     ],
   },
   clearScreen: false,

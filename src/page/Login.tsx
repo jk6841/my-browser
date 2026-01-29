@@ -1,4 +1,4 @@
-import { createClient } from '@lib/supabase/client';
+import { createClient } from '@lib/supabase/client.ts';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 

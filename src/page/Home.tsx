@@ -1,24 +1,23 @@
 import { invoke } from '@tauri-apps/api/core';
 import { type SyntheticEvent, useEffect, useState } from 'react';
-import './index.css';
-import { createClient } from '@lib/supabase/client';
+import '../index.css';
+import { createClient } from '@lib/supabase/client.ts';
 import { Link, useNavigate } from 'react-router';
 
-function App() {
+export default function () {
   const [url, setUrl] = useState('https://www.google.com');
-  const [loginState, setLoginState] = useState<boolean>(false);
   const nav = useNavigate();
 
   useEffect(() => {
     const checkLogin = async () => {
       const supabaseClient = createClient();
       const user = await supabaseClient.auth.getUser();
-      if (user.data.user) {
-        setLoginState(true);
+      if (!user.data.user) {
+        nav('/login');
       }
     };
     checkLogin();
-  }, []);
+  }, [nav]);
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -32,10 +31,6 @@ function App() {
     await invoke('open_webpage', { url: finalUrl });
     setUrl(finalUrl);
   };
-
-  if (!loginState) {
-    return nav('/login');
-  }
 
   return (
     <div className="overlay">
@@ -55,5 +50,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
