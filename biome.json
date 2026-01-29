@@ -30,6 +30,10 @@
       },
       "correctness": {
         "useImportExtensions": "error"
+      },
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+        "noStaticElementInteractions": "off"
       }
     },
     "domains": {
