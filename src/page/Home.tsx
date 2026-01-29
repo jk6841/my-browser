@@ -2,7 +2,9 @@ import { invoke } from '@tauri-apps/api/core';
 import { type SyntheticEvent, useEffect, useState } from 'react';
 import '../index.css';
 import BookmarkButton from '@component/BookmarkButton.tsx';
-import { createClient } from '@lib/supabase/client.ts';
+import ErrorUi from '@component/ErrorUi.tsx';
+import Loading from '@component/Loading.tsx';
+import { useUser } from '@lib/supabase/query.ts';
 import { Link, useNavigate } from 'react-router';
 
 interface Bookmark {
@@ -29,19 +31,7 @@ export default function Home() {
   const [url, setUrl] = useState('https://www.google.com');
   const [bookmarks, setBookmarks] = useState<Bookmark[]>(initialBookmarks);
   const nav = useNavigate();
-
-  useEffect(() => {
-    const checkLogin = async () => {
-      const supabaseClient = createClient();
-      const {
-        data: { user },
-      } = await supabaseClient.auth.getUser();
-      if (!user) {
-        nav('/login');
-      }
-    };
-    checkLogin();
-  }, [nav]);
+  const { data, isLoading, error } = useUser();
 
   // 북마크 로드
   useEffect(() => {
@@ -52,6 +42,17 @@ export default function Home() {
       } catch {}
     }
   }, []);
+
+  if (error) {
+    return <ErrorUi />;
+  }
+  if (isLoading) {
+    return <Loading />;
+  }
+  if (!data) {
+    nav('/login');
+    return <div />;
+  }
 
   // 북마크 저장
   const saveBookmarks = (newBookmarks: Bookmark[]) => {

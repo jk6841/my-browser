@@ -1,24 +1,28 @@
+import ErrorUi from '@component/ErrorUi.tsx';
+import Loading from '@component/Loading.tsx';
 import { createClient } from '@lib/supabase/client.ts';
-import { useEffect } from 'react';
+import { useUser } from '@lib/supabase/query.ts';
 import { useNavigate } from 'react-router';
 
 export default () => {
   const nav = useNavigate();
+  const { data, isLoading, error } = useUser();
+  if (error) {
+    return <ErrorUi />;
+  }
 
-  useEffect(() => {
-    const supabase = createClient();
+  if (isLoading) {
+    return <Loading />;
+  }
 
-    const logOut = async () => {
+  if (data) {
+    const logout = async () => {
+      const supabase = createClient();
       await supabase.auth.signOut();
-      nav('/login');
+      await nav('/login');
     };
+    logout();
+  }
 
-    logOut();
-  }, [nav]);
-
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p>로그아웃 중...</p>
-    </div>
-  );
+  return <div />;
 };
