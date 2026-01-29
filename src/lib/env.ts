@@ -1,3 +1,12 @@
+// server
+export const getServer = () => {
+  const ret = import.meta.env.VITE_SERVER;
+  if (!ret) {
+    console.error('No VITE_SERVER');
+  }
+  return ret || '';
+};
+
 // supabase
 export const getSupabaseUrl = () => {
   const ret = import.meta.env.VITE_SUPABASE_URL;

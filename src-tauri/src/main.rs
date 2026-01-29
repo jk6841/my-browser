@@ -25,6 +25,7 @@ async fn open_webpage(app: tauri::AppHandle, url: String) -> Result<(), String> 
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_http::init())
         .invoke_handler(tauri::generate_handler![open_webpage])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

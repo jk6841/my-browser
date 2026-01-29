@@ -1,4 +1,6 @@
-import Launcher from '@page/Home.tsx';
+import BookmarkAdd from '@page/BookmarkAdd.tsx';
+import FolderAdd from '@page/FolderAdd.tsx';
+import Home from '@page/Home.tsx';
 import Login from '@page/Login.tsx';
 import Logout from '@page/Logout.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -12,9 +14,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <QueryClientProvider client={new QueryClient()}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Launcher />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/bookmarks" element={<BookmarkAdd />} />
+          <Route path="/folders" element={<FolderAdd />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
