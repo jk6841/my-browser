@@ -17,6 +17,10 @@ export default defineConfig(async () => ({
         find: '@page',
         replacement: '/src/page',
       },
+      {
+        find: '@component',
+        replacement: '/src/component',
+      },
     ],
   },
   clearScreen: false,
