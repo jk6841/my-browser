@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "my-browser",
+        "title": "My Browser",
         "width": 1280,
         "height": 900
       }
